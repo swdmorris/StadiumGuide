@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @city.name %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @city.state %>
+</p>
+
+<p>
+  <strong>Sportsness:</strong>
+  <%= @city.sportsness %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Venues:</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  	<% stadiums = Stadium.where(city_id: @city.id) %>
+    <% stadiums.each do |s| %>
+      <tr>
+        <td><%= link_to "#{s.name}", s %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+    <em><%= 'No stadiums in this city' if stadiums.empty? %></em>
+
+<%= link_to 'Edit', edit_city_path(@city) %> |
+<%= link_to 'Back', cities_path %>
